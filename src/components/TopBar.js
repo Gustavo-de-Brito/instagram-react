@@ -1,5 +1,4 @@
 import SlideBar from "./SlideBar";
-import logo from "../images/logo.png";
 
 export default function TopBar() {
     return (
@@ -9,7 +8,7 @@ export default function TopBar() {
                     <div class="logo">
                         <ion-icon name="logo-instagram"></ion-icon>
                         <div></div>
-                        <img src={require("../images/logo.png").default} alt="logo-instagram" />
+                        <img src="./images/logo.png" alt="logo-instagram" />
                         <ion-icon name="paper-plane-outline"></ion-icon>
                     </div>
                     <div class="search">

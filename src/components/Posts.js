@@ -1,178 +1,185 @@
+const postsInfo = [
+    {   
+        profile:{
+            img: "./images/icons/meowed 1.png",
+            name: "meowed",
+        },
+        media: {
+            type: "image",
+            src: "./images/gato-telefone 1.png"
+        },
+        likedData: {
+            mainImg: "./images/icons/respondeai 1.png",
+            mainProfile: "respondeai",
+            qtdProfiles: 101.523,
+        },
+        comments: [
+            {
+                profileName: "sorayateamo",
+                text: "what a strange dog"
+            },
+            {
+                profileName: "idontunderstandjokes",
+                text: "but its a cat"
+            },
+            {
+                profileName: "withoutcreativity",
+                text: "what a strange dog"
+            },
+        ],
+        userProfileImg: "./images/icons/catanacomics 1.png",
+    },
+    {
+        profile:{
+            img: "./images/icons/barked 1.png",
+            name: "barked",
+        },
+        media: {
+            type: "image",
+            src: "./images/dog 1.png"
+        },
+        likedData: {
+            mainImg: "./images/icons/adorableanimals 1.png",
+            mainProfile: "adorable_animals",
+            qtdProfiles: 99.159,
+        },
+        comments: [
+            {
+                profileName: "sorayateamo",
+                text: "what a strange cat"
+            },
+            {
+                profileName: "idontunderstandjokes",
+                text: "but its a dog"
+            },
+            {
+                profileName: "withoutcreativity",
+                text: "what a strange cat"
+            },
+        ],
+        userProfileImg: "./images/icons/catanacomics 1.png",
+    },
+    {
+        profile:{
+            img: "./images/icons/soraya-te-amo.jpg",
+            name: "sorayateamo",
+        },
+        media: {
+            type: "video",
+            src: "./video/video.mp4"
+        },
+        likedData: {
+            mainImg: "./images/icons/respondeai 1.png",
+            mainProfile: "respondeai",
+            qtdProfiles: 101.523,
+        },
+        comments: [
+            {
+                profileName: "sorayateamo",
+                text: "what a strange platypus"
+            },
+            {
+                profileName: "idontunderstandjokes",
+                text: "but its a bear"
+            },
+            {
+                profileName: "withoutcreativity",
+                text: "what a strange platypus"
+            },
+        ],
+        userProfileImg: "./images/icons/catanacomics 1.png",
+    },
+];
+
+function Comment(props) {
+    return (
+    <div class="comment">
+        <p>
+            <span>{props.profileName}</span> {props.comment}
+        </p>
+        <ion-icon name="heart-outline"></ion-icon>
+
+    </div>
+    );
+}
+
+function Post(props) {
+    let postMedia;
+
+    if(props.media.type === "image") {
+        postMedia = <img src={props.media.src}/>
+    } else {
+        postMedia = (
+            <video controls autoplay muted>
+                <source src={props.media.src} type="video/mp4"/>
+            </video>
+        )
+    }
+
+    return (
+        <div class="post">
+            <div class="top-post">
+                <div class="profile-info">
+                        <img src={props.profile.img}/>
+                    <p>{props.profile.name}</p>
+                </div>
+                <ion-icon name="ellipsis-horizontal"></ion-icon>
+            </div>
+            {/* create condicional for media type*/}
+            {postMedia}
+            {/* create condicional for media type*/}
+            <div class="actions-bar">
+                <div class="left-side">
+                    <ion-icon name="heart-outline"></ion-icon>
+                    <ion-icon name="chatbubble-outline"></ion-icon>
+                    <ion-icon name="paper-plane-outline"></ion-icon>
+                </div>
+                <div class="right-side">
+                    <ion-icon name="bookmark-outline"></ion-icon>
+                </div>
+            </div>
+            <div class="liked-info">
+                <img src={props.likedData.mainImg}/>
+                <p>Curtido por <span>{props.likedData.mainProfile}</span> e <span>outras {props.likedData.qtdProfiles} pessoas</span></p>
+            </div>
+
+            <div class="comments">
+
+                {props.comments.map(comment => <Comment profileName={comment.profileName} comment={comment.text} />)}
+
+            </div>
+
+            <div class="comment-bar">
+                <div>
+                    <img src={props.userProfileImg}/>
+                    <form action="">
+                        <input type="text" placeholder="Adicione um comentário..."/>
+                    </form>
+                </div>
+                <button>Publicar</button>
+            </div>
+        </div>
+    )
+}
+
 export default function Posts() {
+    const postsJsx = [];
+
+    for(const postInfo of postsInfo) {
+        postsJsx.push(
+            <Post profile={postsInfo[0].profile}
+            media={postInfo.media}
+            likedData={postInfo.likedData}
+            comments={postInfo.comments}
+            userProfileImg={postInfo.userProfileImg}/>
+        );
+    }
+
     return (
         <div class="posts">
-            <div class="post">
-                <div class="top-post">
-                    <div class="profile-info">
-                        <img src={require("../images/icons/meowed 1.png").default}/>
-                        <p>meowed</p>
-                    </div>
-                    <ion-icon name="ellipsis-horizontal"></ion-icon>
-                </div>
-                <img src={require("../images/gato-telefone 1.png").default}/>
-                <div class="actions-bar">
-                    <div class="left-side">
-                        <ion-icon name="heart-outline"></ion-icon>
-                        <ion-icon name="chatbubble-outline"></ion-icon>
-                        <ion-icon name="paper-plane-outline"></ion-icon>
-                    </div>
-                    <div class="right-side">
-                        <ion-icon name="bookmark-outline"></ion-icon>
-                    </div>
-                </div>
-                <div class="liked-info">
-                    <img src={require("../images/icons/respondeai 1.png").default}/>
-                    <p>Curtido por <span>respondeai</span> e <span>outras 101.523 pessoas</span></p>
-                </div>
 
-                <div class="comments">
-                    <div class="comment">
-                        <p>
-                            <span>sorayateamo</span> what a strange dog
-                        </p>
-                        <ion-icon name="heart-outline"></ion-icon>
+            {postsJsx}
 
-                    </div>
-                    <div class="comment">
-                        <p>
-                            <span>idontunderstandjokes</span> but its a cat
-                        </p>
-                        <ion-icon name="heart-outline"></ion-icon>
-
-                    </div>
-                    <div class="comment">
-                        <p>
-                            <span>withoutcreativity</span> what a strange dog
-                        </p>
-                        <ion-icon name="heart-outline"></ion-icon>
-                    </div>
-                </div>
-
-                <div class="comment-bar">
-                    <div>
-                        <img src={require("../images/icons/catanacomics 1.png").default}/>
-                        <form action="">
-                            <input type="text" placeholder="Adicione um comentário..."/>
-                        </form>
-                    </div>
-                    <button>Publicar</button>
-                </div>
-            </div>
-
-            <div class="post">
-                <div class="top-post">
-                    <div class="profile-info">
-                        <img src="../images/icons/barked 1.png"/>
-                        <p>barked</p>
-                    </div>
-                    <ion-icon name="ellipsis-horizontal"></ion-icon>
-                </div>
-                <img src={require("../images/dog 1.png").default}/>
-                <div class="actions-bar">
-                    <div class="left-side">
-                        <ion-icon name="heart-outline"></ion-icon>
-                        <ion-icon name="chatbubble-outline"></ion-icon>
-                        <ion-icon name="paper-plane-outline"></ion-icon>
-                    </div>
-                    <div class="right-side">
-                        <ion-icon name="bookmark-outline"></ion-icon>
-                    </div>
-                </div>
-                <div class="liked-info">
-                    <img src={require("../images/icons/adorableanimals 1.png").default}/>
-                    <p>Curtido por <span>adorable_animals</span> e <span>outras 99.159 pessoas</span></p>
-                </div>
-                <div class="comments">
-                    <div class="comment">
-                        <p>
-                            <span>sorayateamo</span> what a strange cat
-                        </p>
-                        <ion-icon name="heart-outline"></ion-icon>
-
-                    </div>
-                    <div class="comment">
-                        <p>
-                            <span>idontunderstandjokes</span> but its a dog
-                        </p>
-                        <ion-icon name="heart-outline"></ion-icon>
-
-                    </div>
-                    <div class="comment">
-                        <p>
-                            <span>withoutcreativity</span> what a strange cat
-                        </p>
-                        <ion-icon name="heart-outline"></ion-icon>
-                    </div>
-                </div>
-
-                <div class="comment-bar">
-                    <div>
-                        <img src={require("../images/icons/catanacomics 1.png").default}/>
-                        <form action="">
-                            <input type="text" placeholder="Adicione um comentário..."/>
-                        </form>
-                    </div>
-                    <button>Publicar</button>
-                </div>
-            </div>
-            <div class="post">
-                <div class="top-post">
-                    <div class="profile-info">
-                        <img src={require("../images/icons/soraya-te-amo.jpg").default}/>
-                        <p>sorayateamo</p>
-                    </div>
-                    <ion-icon name="ellipsis-horizontal"></ion-icon>
-                </div>
-                <video controls autoplay muted>
-                    <source src={require("../video/video.mp4").default} type="video/mp4"/>
-                </video>
-                <div class="actions-bar">
-                    <div class="left-side">
-                        <ion-icon name="heart-outline"></ion-icon>
-                        <ion-icon name="chatbubble-outline"></ion-icon>
-                        <ion-icon name="paper-plane-outline"></ion-icon>
-                    </div>
-                    <div class="right-side">
-                        <ion-icon name="bookmark-outline"></ion-icon>
-                    </div>
-                </div>
-                <div class="liked-info">
-                    <img src={require("../images/icons/respondeai 1.png").default}/>
-                    <p>Curtido por <span>respondeai</span> e <span>outras 101.523 pessoas</span></p>
-                </div>
-                <div class="comments">
-                    <div class="comment">
-                        <p>
-                            <span>sorayateamo</span> what a strange platypus
-                        </p>
-                        <ion-icon name="heart-outline"></ion-icon>
-
-                    </div>
-                    <div class="comment">
-                        <p>
-                            <span>idontunderstandjokes</span> but its a bear
-                        </p>
-                        <ion-icon name="heart-outline"></ion-icon>
-
-                    </div>
-                    <div class="comment">
-                        <p>
-                            <span>withoutcreativity</span> what a strange platypus
-                        </p>
-                        <ion-icon name="heart-outline"></ion-icon>
-                    </div>
-                </div>
-
-                <div class="comment-bar">
-                    <div>
-                        <img src={require("../images/icons/catanacomics 1.png").default}/>
-                        <form action="">
-                            <input type="text" placeholder="Adicione um comentário..."/>
-                        </form>
-                    </div>
-                    <button>Publicar</button>
-                </div>
-            </div>
         </div>
     );
 }

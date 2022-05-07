@@ -107,14 +107,10 @@ body {
     width: 614px;
 }
 
-.posts-content {
-    width: 614px;
-    overflow: hidden;
-}
-
 .stories-container {
-    width: 100%;
+    width: 614px;
     display: flex;
+    overflow: hidden;
     justify-content: space-between;
     border: 1px solid #dbdbdb;
     border-radius: 5px;
@@ -141,7 +137,7 @@ body {
 .storie-box > p {
     margin-top: 10px;
     font-size: 12px;
-    width: 80px;
+    width: 70px;
     text-align: center;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -396,6 +392,11 @@ body {
 
     .site-content {
         align-items: center;
+        width: 100%;
+    }
+
+    .stories-container,
+    .posts {
         width: 100%;
     }
 }
