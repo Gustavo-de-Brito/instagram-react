@@ -199,7 +199,8 @@ export default function Posts() {
 
     for(const postInfo of postsInfo) {
         postsJsx.push(
-            <Post profile={postsInfo[0].profile}
+            <Post 
+            profile={postInfo.profile}
             media={postInfo.media}
             likedData={postInfo.likedData}
             comments={postInfo.comments}
