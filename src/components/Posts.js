@@ -1,3 +1,5 @@
+import React from "react";
+
 const postsInfo = [
     {   
         profile:{
@@ -87,17 +89,34 @@ const postsInfo = [
                 text: "what a strange platypus"
             },
         ],
-        userProfileImg: "./images/icons/catanacomics 1.png",
     },
 ];
 
+
+
+const userImg = "./images/icons/catanacomics 1.png";
+
+
 function Comment(props) {
+    const [likeIcon, setLikeIcon] = React.useState("heart-outline");
+    const [color, setColor] = React.useState("#262626");
+
+    function likeUnlike() {
+        if(likeIcon === "heart-outline") {
+            setLikeIcon("heart");
+            setColor("red");
+        } else {
+            setLikeIcon("heart-outline");
+            setColor("#262626");
+        }
+    }
+    
     return (
-    <div class="comment">
+        <div class="comment">
         <p>
             <span>{props.profileName}</span> {props.comment}
         </p>
-        <ion-icon name="heart-outline"></ion-icon>
+        <ion-icon onClick={likeUnlike} style={{color: color}} name={likeIcon}></ion-icon>
 
     </div>
     );
@@ -105,7 +124,7 @@ function Comment(props) {
 
 function Post(props) {
     let postMedia;
-
+    
     if(props.media.type === "image") {
         postMedia = <img src={props.media.src}/>
     } else {
@@ -114,6 +133,19 @@ function Post(props) {
                 <source src={props.media.src} type="video/mp4"/>
             </video>
         )
+    }
+
+    const [likeIcon, setLikeIcon] = React.useState("heart-outline");
+    const [color, setColor] = React.useState("#262626");
+    
+    function likeUnlike() {
+        if(likeIcon === "heart-outline") {
+            setLikeIcon("heart");
+            setColor("red");
+        } else {
+            setLikeIcon("heart-outline");
+            setColor("#262626");
+        }
     }
 
     return (
@@ -130,7 +162,7 @@ function Post(props) {
             {/* create condicional for media type*/}
             <div class="actions-bar">
                 <div class="left-side">
-                    <ion-icon name="heart-outline"></ion-icon>
+                    <ion-icon onClick={likeUnlike} style={{color: color}} name={likeIcon}></ion-icon>
                     <ion-icon name="chatbubble-outline"></ion-icon>
                     <ion-icon name="paper-plane-outline"></ion-icon>
                 </div>
@@ -171,7 +203,7 @@ export default function Posts() {
             media={postInfo.media}
             likedData={postInfo.likedData}
             comments={postInfo.comments}
-            userProfileImg={postInfo.userProfileImg}/>
+            userProfileImg={userImg}/>
         );
     }
 

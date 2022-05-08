@@ -21,12 +21,17 @@ const suggestionsInfo = [
     },
 ];
 
-function Profile() {
+const user = {
+    image: "./images/icons/catanacomics 1.png",
+    name: "catanacomics",
+}
+
+function Profile(props) {
     return (
         <div class="profile">
-            <img src="./images/icons/catanacomics 1.png" alt=""/>
+            <img src={props.image} alt=""/>
             <div>
-                <p>catanacomics</p>
+                <p>{props.name}</p>
                 <p>Catana</p>
             </div>
         </div>
@@ -56,7 +61,7 @@ function Suggestions() {
                 <p>Ver tudo</p>
             </div>
 
-            {suggestionsInfo.map(suggestion => <Suggestion image={suggestion.image} name={suggestion.name}/>)}
+            {suggestionsInfo.map(suggestion => <Suggestion image={suggestion.image} name={suggestion.name} />)}
 
         </div>
     );
@@ -65,7 +70,7 @@ function Suggestions() {
 export default function SlideBar() {
     return (
         <div class="slidebar">
-            <Profile />
+            <Profile image={user.image} name={user.name} />
             <Suggestions />
             <div class="site-info">
                 <p>Sobre • Ajuda • Imprensa • API • Carreiras • Privacidade • Termos • Localizações • Contas mais relevantes • Hashtags • Idioma</p>
