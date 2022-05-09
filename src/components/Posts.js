@@ -157,9 +157,9 @@ function Post(props) {
                 </div>
                 <ion-icon name="ellipsis-horizontal"></ion-icon>
             </div>
-            {/* create condicional for media type*/}
+
             {postMedia}
-            {/* create condicional for media type*/}
+
             <div class="actions-bar">
                 <div class="left-side">
                     <ion-icon onClick={likeUnlike} style={{color: color}} name={likeIcon}></ion-icon>
